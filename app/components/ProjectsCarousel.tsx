@@ -98,22 +98,19 @@ function ProjectCard({
       </div>
 
       <div className="flex min-h-0 flex-1 flex-col p-6">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">
+        {/* <p className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">
           {shortTitle}
-        </p>
+        </p> */}
 
         <h3 className="mt-4 text-xl font-semibold text-gray-950 line-clamp-3">
           {title}
         </h3>
-
         <p className="mt-5 text-sm leading-6 text-gray-500">
           {location} · {year} · {area.toLocaleString("en-US")} {areaUnit}
         </p>
-
         <p className="mt-6 text-sm leading-6 text-gray-500 line-clamp-2">
           {stage}
         </p>
-
         <div className="mt-auto pt-6">
           <Link
             href={`/projects/${slug}`}

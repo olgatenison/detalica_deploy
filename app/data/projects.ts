@@ -102,4 +102,50 @@ export const projects = [
     challenge:
       "One of the key challenges was converting the structural system from cast-in-place concrete to precast construction while preserving the original appearance and layout established during the detailed design stage.",
   },
+  {
+    slug: "8-stories-apartment-building",
+    title: "8-Storey Apartment Building",
+    shortTitle: "Apartment Building",
+    location: "Ukraine",
+    area: 13375.5,
+    areaUnit: "m2",
+    status: "Completed",
+    year: "2021-2022",
+    stage: "Permit documentation + construction documentation",
+    link: "",
+    coverImage: "/projects/greenwood/g1.webp",
+    images: [
+      "/projects/greenwood/g1.webp",
+      "/projects/greenwood/g2.webp",
+      "/projects/greenwood/g3.webp",
+      "/projects/greenwood/g4.webp",
+    ],
+    description:
+      "An eight-storey residential building with two entrance cores and two underground parking levels. The building features a reinforced concrete structural frame, aerated concrete infill walls, and brick façades inspired by the historic architecture of Yekaterinoslav.",
+    challenge:
+      "The architectural scope covered the preparation of permit and construction documentation, including architectural detailing, multidisciplinary coordination, and the development of comprehensive construction drawings. The project also included the integration of two underground parking levels with a total area of 3,620.5 m2.",
+  },
+  {
+    slug: "fairfield-cedar-city-marriott-hotel",
+    title: "Fairfield Cedar City by Marriott Hotel",
+    shortTitle: "Fairfield Marriott",
+    location: "Cedar City, Utah, USA",
+    area: 5550,
+    areaUnit: "m2",
+    status: "In Progress",
+    year: "2025-Present",
+    stage: "Permit documentation + construction drawings",
+    link: "",
+    coverImage: "/projects/hotel/h1.webp",
+    images: [
+      "/projects/hotel/h1.webp",
+      "/projects/hotel/h2.webp",
+      "/projects/hotel/h3.webp",
+      "/projects/hotel/h4.webp",
+    ],
+    description:
+      "A 111-room Fairfield by Marriott hotel developed in accordance with the brand's architectural standards and design requirements. The hospitality project includes guest accommodation, public areas, back-of-house facilities, and supporting building services integrated into a coordinated design.",
+    challenge:
+      "Architectural documentation was developed in support of the Architect of Record, including BIM modelling and the preparation of a complete permit drawing package in accordance with U.S. documentation standards.",
+  },
 ];

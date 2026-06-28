@@ -48,9 +48,9 @@ export default function ProjectsPage() {
 
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex flex-wrap items-center gap-3 text-xs">
-                      <span className="font-medium uppercase tracking-[0.2em] text-gray-500">
+                      {/* <span className="font-medium uppercase tracking-[0.2em] text-gray-500">
                         {project.shortTitle}
-                      </span>
+                      </span> */}
 
                       <span className="text-gray-300">/</span>
 

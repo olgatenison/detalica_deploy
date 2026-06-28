@@ -59,9 +59,9 @@ export default function ProjectPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-x-12 gap-y-12 lg:grid-cols-[1fr_420px] lg:gap-x-16">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">
+              {/* <p className="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">
                 {project.shortTitle}
-              </p>
+              </p> */}
 
               <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
                 {project.title}
