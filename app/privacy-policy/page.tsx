@@ -2,7 +2,7 @@ export default function PrivacyPolicy() {
   return (
     <main className="bg-zinc-50 text-black">
       <section className="scroll-mt-8 px-4 py-24 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-7xl">
           <Subheading className="text-center">Privacy Policy</Subheading>
 
           <Heading as="h1" className="mt-2 text-center">
@@ -16,15 +16,13 @@ export default function PrivacyPolicy() {
             modeling, or related technical support services.
           </p>
 
-          <div className="mx-auto mt-16 mb-32 max-w-xl space-y-12">
+          <div className="mx-auto mt-16 mb-32 grid max-w-xl gap-y-12 lg:max-w-5xl lg:grid-cols-2 lg:gap-x-16">
             <dl>
               <dt className="text-sm font-semibold">1. Data Controller</dt>
               <dd className="mt-4 text-sm/6 text-gray-600">
                 DETAILICA
                 <br />
-                [Company Address]
-                <br />
-                Email: hello@detailica.com
+                Email: Oksana.Kuchura@detailica.com
               </dd>
             </dl>
 
@@ -52,8 +50,8 @@ export default function PrivacyPolicy() {
                 and project requirements, prepare quotations and project
                 proposals, deliver architectural, structural, BIM, drafting and
                 documentation services, communicate regarding ongoing projects,
-                improve our website and services, maintain business records,
-                and comply with legal obligations.
+                improve our website and services, maintain business records, and
+                comply with legal obligations.
               </dd>
             </dl>
 
@@ -104,9 +102,9 @@ export default function PrivacyPolicy() {
                 We do not sell, rent, or trade personal information. We may
                 share information only when necessary to provide requested
                 services, work with trusted contractors or service providers
-                supporting our operations, comply with legal obligations, protect
-                our rights, property, or security, or respond to lawful requests
-                from authorities.
+                supporting our operations, comply with legal obligations,
+                protect our rights, property, or security, or respond to lawful
+                requests from authorities.
               </dd>
             </dl>
 
@@ -211,17 +209,13 @@ export default function PrivacyPolicy() {
               <dd className="mt-4 text-sm/6 text-gray-600">
                 DETAILICA
                 <br />
-                [Company Address]
-                <br />
-                Email: hello@detailica.com
+                Email: Oksana.Kuchura@detailica.com
               </dd>
             </dl>
 
-            <p className="border-t border-gray-200 pt-8 text-xs/6 text-gray-500">
-
-  Effective Date: January 2026.
-
-</p> 
+            <p className="border-t border-gray-200 pt-8 text-xs/6 text-gray-500 lg:col-span-2">
+              Effective Date: January 2026.
+            </p>
           </div>
         </div>
       </section>

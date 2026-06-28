@@ -7,7 +7,7 @@ export default function ProjectsPage() {
   return (
     <main className="bg-white">
       <section className="py-12 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">
               Projects
@@ -84,7 +84,7 @@ export default function ProjectsPage() {
                       </span>
                     </div>
 
-                    <p className="mt-4 line-clamp-3 text-sm leading-6 text-gray-600">
+                    <p className="mt-4 line-clamp-3 text-sm leading-6 text-gray-600 max-w-2xl">
                       {project.description}
                     </p>
 

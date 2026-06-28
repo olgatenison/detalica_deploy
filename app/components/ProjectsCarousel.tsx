@@ -15,64 +15,32 @@ import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import useMeasure, { type RectReadOnly } from "react-use-measure";
 import Link from "next/link";
 import Image from "next/image";
-const projects = [
-  {
-    label: "AR",
-    title: "Architectural Documentation",
-    description:
-      "Support for architectural teams in BIM modeling, drawing production, and project documentation.",
-    image: "/services/architectural.jpg",
-    href: "/projects",
-  },
-  {
-    label: "STR",
-    title: "Structural Documentation",
-    description:
-      "Structural BIM modeling and drawing production support for reinforced concrete and steel projects.",
-    image: "/services/structural.jpg",
-    href: "/projects",
-  },
-  {
-    label: "BIM",
-    title: "BIM Coordination",
-    description:
-      "Revit-based coordination workflows, model integration, and production support within collaborative BIM environments.",
-    image: "/services/bim.jpg",
-    href: "/projects",
-  },
-  {
-    label: "Delivery",
-    title: "Project Delivery Support",
-    description:
-      "Flexible technical support for project teams during fast-paced delivery stages and complex documentation workflows.",
-    image: "/services/delivery.jpg",
-    href: "/projects",
-  },
-  {
-    label: "Workflow",
-    title: "International Workflows",
-    description:
-      "Experience adapting to different documentation standards, coordination workflows, and project delivery requirements.",
-    image: "/services/workflows.jpg",
-    href: "/projects",
-  },
-];
+
+import { projects } from "@/app/data/projects";
 
 function ProjectCard({
-  label,
+  shortTitle,
   title,
-  description,
-  image,
-  href,
+  coverImage,
+  slug,
+  location,
+  year,
+  stage,
+  area,
+  areaUnit,
   bounds,
   scrollX,
   ...props
 }: {
-  label: string;
+  shortTitle: string;
   title: string;
-  description: string;
-  image: string;
-  href: string;
+  coverImage: string;
+  slug: string;
+  location: string;
+  year: string;
+  stage: string;
+  area: number;
+  areaUnit: string;
   bounds: RectReadOnly;
   scrollX: MotionValue<number>;
 } & HTMLMotionProps<"article">) {
@@ -116,31 +84,39 @@ function ProjectCard({
       ref={setElement}
       style={{ opacity }}
       {...props}
-      className="relative flex h-105 w-72 shrink-0 snap-start scroll-ml-(--scroll-padding) flex-col justify-between overflow-hidden border border-black/10 bg-white sm:w-96"
+      className="relative flex h-140 w-72 shrink-0 snap-start scroll-ml-(--scroll-padding) flex-col overflow-hidden border border-black/10 bg-white sm:w-96"
     >
-      <div className="relative h-48 border-b border-black/10 bg-gray-100">
+      <div className="relative h-55 shrink-0 border-b border-black/10 bg-gray-100">
         <Image
-          src={image}
-          alt=""
-          width={400}
-          height={200}
+          src={coverImage}
+          alt={title}
+          fill
           draggable={false}
-          className="absolute inset-0 h-full w-full select-none object-cover "
+          sizes="(min-width: 640px) 384px, 288px"
+          className="select-none object-cover"
         />
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex min-h-0 flex-1 flex-col p-6">
         <p className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">
-          {label}
+          {shortTitle}
         </p>
 
-        <h3 className="mt-4 text-xl font-semibold text-gray-950">{title}</h3>
+        <h3 className="mt-4 text-xl font-semibold text-gray-950 line-clamp-3">
+          {title}
+        </h3>
 
-        <p className="mt-4 text-base leading-6 text-gray-600">{description}</p>
+        <p className="mt-5 text-sm leading-6 text-gray-500">
+          {location} · {year} · {area.toLocaleString("en-US")} {areaUnit}
+        </p>
+
+        <p className="mt-6 text-sm leading-6 text-gray-500 line-clamp-2">
+          {stage}
+        </p>
 
         <div className="mt-auto pt-6">
           <Link
-            href={href}
+            href={`/projects/${slug}`}
             className="inline-flex items-center gap-2 text-base font-medium text-gray-950"
           >
             View project
@@ -231,7 +207,7 @@ export function ProjectsCarousel() {
             Selected project experience across documentation and BIM delivery
           </h2>
 
-          <p className="mt-6 mb-32 w-full text-lg leading-7 font-light text-gray-600 text-balance  md:max-w-lg sm:mb-0 lg:max-w-2xl">
+          <p className="mt-6 mb-32 w-full text-lg leading-7 font-light text-gray-600 text-balance md:max-w-lg sm:mb-0 lg:max-w-2xl">
             A look at the project types, delivery stages, and technical
             workflows we support for architecture, engineering, and construction
             teams.
@@ -256,7 +232,7 @@ export function ProjectsCarousel() {
       >
         {projects.map((project, index) => (
           <ProjectCard
-            key={project.title}
+            key={project.slug}
             {...project}
             bounds={bounds}
             scrollX={scrollX}
@@ -280,7 +256,7 @@ export function ProjectsCarousel() {
           <div className="hidden gap-2 sm:flex">
             {projects.map((project, index) => (
               <Headless.Button
-                key={project.title}
+                key={project.slug}
                 onClick={() => scrollTo(index)}
                 data-active={activeIndex === index ? true : undefined}
                 aria-label={`Scroll to ${project.title}`}
