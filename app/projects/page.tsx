@@ -71,9 +71,11 @@ export default function ProjectsPage() {
                     </h2>
 
                     <div className="mt-4 flex flex-wrap gap-2 text-xs text-gray-600">
-                      <span className="border border-black/10 px-2 py-1">
-                        {project.area.toLocaleString()} {project.areaUnit}
-                      </span>
+                      {project.area !== null && project.area !== undefined && (
+                        <span className="border border-black/10 px-2 py-1">
+                          {project.area.toLocaleString()} {project.areaUnit}
+                        </span>
+                      )}
 
                       <span className="border border-black/10 px-2 py-1">
                         {project.status}

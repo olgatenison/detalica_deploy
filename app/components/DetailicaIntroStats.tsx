@@ -12,7 +12,7 @@ import { useInView } from "framer-motion";
 
 const stats = [
   {
-    value: 320,
+    value: 140,
     suffix: "+",
     label: "Projects completed",
   },

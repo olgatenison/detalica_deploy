@@ -148,4 +148,74 @@ export const projects = [
     challenge:
       "Architectural documentation was developed in support of the Architect of Record, including BIM modelling and the preparation of a complete permit drawing package in accordance with U.S. documentation standards.",
   },
+  {
+    slug: "mixed-use-residential-complex-ukraine",
+    title: "Mixed-Use Residential Complex",
+    shortTitle: "Mixed-Use Complex",
+    location: "Ukraine",
+    area: 200000,
+    areaUnit: "m2",
+    status: "In progress",
+    year: "2019-Present",
+    stage: "Permit documentation + construction documentation",
+    link: "",
+    coverImage: "/projects/mixed-use/p2.webp",
+    images: [
+      "/projects/mixed-use/p1.webp",
+      "/projects/mixed-use/p2.webp",
+      "/projects/mixed-use/p3.webp",
+      "/projects/mixed-use/p4.webp",
+    ],
+    description:
+      "The project involves the adaptive reuse of an existing parking structure into a mixed-use development comprising five residential towers with apartments, hotel accommodation, sports facilities, restaurant spaces, and offices. The existing structure was largely retained and integrated into the new scheme, with selective demolition enabling the insertion of new building volumes.",
+    challenge:
+      "One of the key challenges was maintaining the structural viability of the existing parking structure while integrating new residential, hospitality, commercial, sports, and office functions. Architectural documentation was developed for both permitting and construction phases as part of the project team, requiring careful coordination across multiple uses and building volumes.",
+  },
+  {
+    slug: "multi-unit-ski-hospitality-project",
+    title: "Multi-Unit Ski Hospitality Project",
+    shortTitle: "Ski Hospitality",
+    location: "Brian Head, Utah, USA",
+    area: null,
+    areaUnit: "m2",
+    status: "Completed",
+    year: "2022-2025",
+    stage: "Construction documentation",
+    architectOfRecord: "Justin Brownrigg Stein, J: BROWN:RIGG Architecture",
+    link: "",
+    coverImage: "/projects/ski-hospitality/u1.webp",
+    images: [
+      "/projects/ski-hospitality/u1.webp",
+      "/projects/ski-hospitality/u2.webp",
+      "/projects/ski-hospitality/u3.webp",
+      "/projects/ski-hospitality/u4.webp",
+    ],
+    description:
+      "The project involves the development of two cabin types for a ski resort in Utah, each designed as a condominium comprising three rentable condo units. Architectural documentation was developed for the construction phase based on the established design, focusing on coordinated construction drawings and technical documentation.",
+    challenge:
+      "The scope included the preparation of construction documentation packages in compliance with applicable codes and project requirements, supporting the delivery of the Architect of Record’s design intent.",
+  },
+  {
+    slug: "casita-typologies-resort-village",
+    title: "6 Casita Typologies for Resort Village",
+    shortTitle: "Casita Typologies",
+    location: "Southern Utah, USA",
+    area: null,
+    areaUnit: "m2",
+    status: "Completed",
+    year: "2021-2024",
+    stage: "Permit documentation + construction documentation",
+    architectOfRecord: "Justin Brownrigg Stein, J: BROWN:RIGG Architecture",
+    link: "",
+    coverImage: "/projects/casita/c3.webp",
+    images: [
+      "/projects/casita/c1.webp",
+      "/projects/casita/c2.webp",
+      "/projects/casita/c3.webp",
+    ],
+    description:
+      "The project focuses on the development of six Casita typologies for a resort village, designed in response to the desert landscape, site conditions, and programmatic requirements. The Casitas comprise two-, three-, and four-bedroom residential units, with typologies developed to address variations in orientation, privacy, and views within the natural environment.",
+    challenge:
+      "Architectural documentation was developed for permitting and construction phases, ensuring compliance with applicable regulations and supporting the coordinated delivery of the design intent. The result is a cohesive set of residential typologies integrated within the surrounding desert landscape.",
+  },
 ];
