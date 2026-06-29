@@ -72,7 +72,7 @@ export default function Footer() {
             <p>© {new Date().getFullYear()} DETAILICA. All rights reserved.</p>
 
             <a
-              href="https://dvi.example"
+              href="https://www.dvi.digital/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex w-fit items-center justify-center gap-2 text-gray-600 transition hover:text-gray-950"
