@@ -80,10 +80,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </div>
 
                 <div>
-                  <dt className="font-semibold text-gray-950">Size</dt>
-                  <dd className="mt-1 text-gray-700">
-                    {project.area.toLocaleString("en-US")} {project.areaUnit}
-                  </dd>
+                  {project.area !== null && project.area !== undefined && (
+                    <>
+                      <dt className="text-sm font-medium text-gray-500">
+                        Area
+                      </dt>
+                      <dd className="mt-1 text-gray-700">
+                        {project.area.toLocaleString("en-US")}{" "}
+                        {project.areaUnit}
+                      </dd>
+                    </>
+                  )}
                 </div>
 
                 <div className="sm:col-span-2">

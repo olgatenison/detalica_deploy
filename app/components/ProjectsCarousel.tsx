@@ -39,7 +39,7 @@ function ProjectCard({
   location: string;
   year: string;
   stage: string;
-  area: number;
+  area: number | null;
   areaUnit: string;
   bounds: RectReadOnly;
   scrollX: MotionValue<number>;
@@ -103,7 +103,13 @@ function ProjectCard({
         </h3>
 
         <p className="mt-5 text-sm leading-6 text-gray-500">
-          {location} · {year} · {area.toLocaleString("en-US")} {areaUnit}
+          {location} · {year}
+          {area !== null && area !== undefined && (
+            <>
+              {" "}
+              · {area.toLocaleString("en-US")} {areaUnit}
+            </>
+          )}
         </p>
 
         <p className="mt-6 text-sm leading-6 text-gray-500 line-clamp-2">
