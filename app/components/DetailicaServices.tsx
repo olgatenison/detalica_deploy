@@ -102,7 +102,7 @@ export default function DetailicaServices() {
         <div className="relative mx-auto mt-20 py-12 sm:mt-32 sm:py-16">
           <div
             aria-hidden="true"
-            className="absolute inset-x-2 top-32 bottom-0 -mx-8 max-w-7xl rounded-4xl bg-[#dddddd] bg-[url('/2323.jpg')] bg-cover bg-center bg-no-repeat ring-1 ring-inset ring-black/5"
+            className="absolute inset-x-2 top-32 bottom-0 -mx-8 max-w-7xl rounded-4xl bg-[#d9d6d5] bg-cover bg-center bg-no-repeat ring-1 ring-inset ring-black/5"
           />
 
           <div className="relative -mt-32 mx-auto grid max-w-xl grid-cols-1 gap-6 md:max-w-lg lg:max-w-5xl lg:grid-cols-3">

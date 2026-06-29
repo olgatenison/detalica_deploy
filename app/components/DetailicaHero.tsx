@@ -37,7 +37,7 @@ export function DetailicaHero() {
       {/* Desktop / tablet background */}
       <div
         aria-hidden="true"
-        className="absolute inset-2 bottom-0 mx-auto hidden max-w-7xl rounded-4xl bg-[#dddddd] bg-[url('/23.jpg')] bg-contain bg-right bg-no-repeat ring-1 ring-inset ring-black/5 md:block"
+        className="absolute inset-2 bottom-0 mx-auto hidden max-w-7xl rounded-4xl bg-[#d8d4d4] bg-[url('/24.jpg')] bg-contain bg-right bg-no-repeat ring-1 ring-inset ring-black/5 md:block"
       />
 
       {/* Desktop / tablet overlay */}
@@ -48,12 +48,12 @@ export function DetailicaHero() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Mobile: whole hero inside grey rounded block */}
-        <div className="rounded-4xl bg-[#dddddd] p-3 ring-1 ring-inset ring-black/5 md:bg-transparent md:p-0 md:ring-0">
+        <div className="rounded-4xl bg-[#d8d4d4] p-3 ring-1 ring-inset ring-black/5 md:bg-transparent md:p-0 md:ring-0">
           <div className="pt-0 pb-10 md:py-24">
             {/* Mobile image first */}
             <div
               aria-hidden="true"
-              className="mb-10 aspect-4/3 rounded-3xl bg-[url('/bg-2.png')] bg-contain bg-center bg-no-repeat md:hidden"
+              className="mb-10 aspect-4/3 rounded-3xl bg-[url('/25.jpg')] bg-contain bg-center bg-no-repeat md:hidden"
             />
 
             <motion.div
