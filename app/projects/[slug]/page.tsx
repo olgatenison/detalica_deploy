@@ -1,45 +1,30 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { notFound, useParams } from "next/navigation";
-import { useRef, useState } from "react";
+import { notFound } from "next/navigation";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
+
 import { projects } from "@/app/data/projects";
+import ProjectGallery from "../../components/ProjectGallery";
 
-export default function ProjectPage() {
-  const params = useParams<{ slug: string }>();
-  const project = projects.find((project) => project.slug === params.slug);
+type ProjectPageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+export function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
+
+  const project = projects.find((project) => project.slug === slug);
 
   if (!project) {
     notFound();
   }
-
-  const scrollToImage = (direction: "prev" | "next") => {
-    const container = scrollRef.current;
-
-    if (!container) return;
-
-    const nextIndex =
-      direction === "next"
-        ? Math.min(currentIndex + 1, project.images.length - 1)
-        : Math.max(currentIndex - 1, 0);
-
-    const target = container.children[nextIndex] as HTMLElement | undefined;
-
-    if (!target) return;
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "start",
-    });
-
-    setCurrentIndex(nextIndex);
-  };
 
   return (
     <main className="bg-white text-gray-950">
@@ -59,10 +44,6 @@ export default function ProjectPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-x-12 gap-y-12 lg:grid-cols-[1fr_420px] lg:gap-x-16">
             <div>
-              {/* <p className="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">
-                {project.shortTitle}
-              </p> */}
-
               <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
                 {project.title}
               </h1>
@@ -114,56 +95,7 @@ export default function ProjectPage() {
           </div>
 
           {project.images.length > 0 && (
-            <section className="mt-16 lg:mt-24" aria-label="Project gallery">
-              <div className="-mx-4 overflow-hidden px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                <div
-                  ref={scrollRef}
-                  className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 scrollbar-none [&::-webkit-scrollbar]:hidden"
-                >
-                  {project.images.map((image, index) => (
-                    <div
-                      key={image}
-                      className="relative aspect-4/3 w-[82vw] shrink-0 snap-start overflow-hidden bg-gray-100 sm:w-[48vw] lg:w-[32vw]"
-                    >
-                      <Image
-                        src={image}
-                        alt={`${project.title} image ${index + 1}`}
-                        fill
-                        priority={index === 0}
-                        sizes="(min-width: 1024px) 32vw, (min-width: 640px) 48vw, 82vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-4 flex items-center gap-5 text-sm text-gray-500">
-                  <button
-                    type="button"
-                    onClick={() => scrollToImage("prev")}
-                    disabled={currentIndex === 0}
-                    className="transition hover:text-gray-950 disabled:pointer-events-none disabled:opacity-30"
-                    aria-label="Previous image"
-                  >
-                    ←
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => scrollToImage("next")}
-                    disabled={currentIndex === project.images.length - 1}
-                    className="transition hover:text-gray-950 disabled:pointer-events-none disabled:opacity-30"
-                    aria-label="Next image"
-                  >
-                    →
-                  </button>
-
-                  <span>
-                    {currentIndex + 1}/{project.images.length}
-                  </span>
-                </div>
-              </div>
-            </section>
+            <ProjectGallery title={project.title} images={project.images} />
           )}
         </div>
       </section>

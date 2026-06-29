@@ -98,19 +98,18 @@ function ProjectCard({
       </div>
 
       <div className="flex min-h-0 flex-1 flex-col p-6">
-        {/* <p className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">
-          {shortTitle}
-        </p> */}
-
         <h3 className="mt-4 text-xl font-semibold text-gray-950 line-clamp-3">
           {title}
         </h3>
+
         <p className="mt-5 text-sm leading-6 text-gray-500">
           {location} · {year} · {area.toLocaleString("en-US")} {areaUnit}
         </p>
+
         <p className="mt-6 text-sm leading-6 text-gray-500 line-clamp-2">
           {stage}
         </p>
+
         <div className="mt-auto pt-6">
           <Link
             href={`/projects/${slug}`}
@@ -125,6 +124,8 @@ function ProjectCard({
   );
 }
 
+const DRAG_THRESHOLD = 6;
+
 export function ProjectsCarousel() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const { scrollX } = useScroll({ container: scrollRef });
@@ -132,7 +133,10 @@ export function ProjectsCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const isDraggingRef = useRef(false);
+  const hasDraggedRef = useRef(false);
+  const pointerIdRef = useRef<number | null>(null);
   const startXRef = useRef(0);
+  const startYRef = useRef(0);
   const scrollLeftRef = useRef(0);
 
   useMotionValueEvent(scrollX, "change", (x) => {
@@ -167,29 +171,61 @@ export function ProjectsCarousel() {
   function handlePointerDown(event: React.PointerEvent<HTMLDivElement>) {
     if (!scrollRef.current) return;
 
-    isDraggingRef.current = true;
+    pointerIdRef.current = event.pointerId;
     startXRef.current = event.clientX;
+    startYRef.current = event.clientY;
     scrollLeftRef.current = scrollRef.current.scrollLeft;
-
-    scrollRef.current.setPointerCapture(event.pointerId);
+    isDraggingRef.current = false;
+    hasDraggedRef.current = false;
   }
 
   function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
-    if (!isDraggingRef.current || !scrollRef.current) return;
+    if (!scrollRef.current || pointerIdRef.current !== event.pointerId) return;
 
-    const diff = event.clientX - startXRef.current;
-    scrollRef.current.scrollLeft = scrollLeftRef.current - diff;
+    const diffX = event.clientX - startXRef.current;
+    const diffY = event.clientY - startYRef.current;
+
+    if (!isDraggingRef.current) {
+      if (
+        Math.abs(diffX) < DRAG_THRESHOLD &&
+        Math.abs(diffY) < DRAG_THRESHOLD
+      ) {
+        return;
+      }
+
+      // Считаем драгом только горизонтальное движение —
+      // вертикальный скролл страницы не перехватываем.
+      if (Math.abs(diffX) <= Math.abs(diffY)) {
+        return;
+      }
+
+      isDraggingRef.current = true;
+      hasDraggedRef.current = true;
+      scrollRef.current.setPointerCapture(event.pointerId);
+    }
+
+    scrollRef.current.scrollLeft = scrollLeftRef.current - diffX;
   }
 
-  function handlePointerUp(event: React.PointerEvent<HTMLDivElement>) {
+  function endPointerInteraction(event: React.PointerEvent<HTMLDivElement>) {
     if (!scrollRef.current) return;
 
+    if (scrollRef.current.hasPointerCapture(event.pointerId)) {
+      scrollRef.current.releasePointerCapture(event.pointerId);
+    }
+
     isDraggingRef.current = false;
-    scrollRef.current.releasePointerCapture(event.pointerId);
+    pointerIdRef.current = null;
   }
 
-  function handlePointerLeave() {
-    isDraggingRef.current = false;
+  function handleClickCapture(event: React.MouseEvent<HTMLDivElement>) {
+    // Если перед кликом был реальный драг — гасим клик,
+    // чтобы не улетало случайно на страницу проекта.
+    if (hasDraggedRef.current) {
+      event.preventDefault();
+      event.stopPropagation();
+      hasDraggedRef.current = false;
+    }
   }
 
   return (
@@ -216,9 +252,10 @@ export function ProjectsCarousel() {
         ref={scrollRef}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        onPointerLeave={handlePointerLeave}
+        onPointerUp={endPointerInteraction}
+        onPointerCancel={endPointerInteraction}
+        onPointerLeave={endPointerInteraction}
+        onClickCapture={handleClickCapture}
         className={clsx(
           "mt-6 md:mt-14 flex cursor-grab gap-8 px-(--scroll-padding) active:cursor-grabbing",
           "scrollbar-none select-none [&::-webkit-scrollbar]:hidden",
@@ -227,13 +264,20 @@ export function ProjectsCarousel() {
           "[--scroll-padding:max(--spacing(4),calc((100vw-(var(--container-7xl)))/2))] sm:[--scroll-padding:max(--spacing(6),calc((100vw-(var(--container-7xl)))/2))] lg:[--scroll-padding:max(--spacing(8),calc((100vw-(var(--container-7xl)))/2))]",
         )}
       >
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <ProjectCard
             key={project.slug}
-            {...project}
+            slug={project.slug}
+            title={project.title}
+            shortTitle={project.shortTitle}
+            coverImage={project.coverImage}
+            location={project.location}
+            year={project.year}
+            stage={project.stage}
+            area={project.area}
+            areaUnit={project.areaUnit}
             bounds={bounds}
             scrollX={scrollX}
-            onClick={() => scrollTo(index)}
           />
         ))}
 
