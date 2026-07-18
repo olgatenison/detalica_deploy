@@ -1,3 +1,4 @@
+// app\api\contact\route.ts
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
@@ -43,7 +44,7 @@ ${message}
   } catch {
     return NextResponse.json(
       { error: "Failed to send message" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
